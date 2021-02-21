@@ -9,15 +9,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.sbs.myapplication.Pokemon;
 import com.example.sbs.myapplication.R;
 import com.example.sbs.myapplication.util.Util;
 
 import java.util.List;
 
 public class RecyclerViewPokemonAdapter extends RecyclerView.Adapter<RecyclerViewPokemonAdapter.ViewHolder> {
-    private List<Integer> data;
+    private List<Pokemon> data;
 
-    public RecyclerViewPokemonAdapter(List<Integer> data) {
+    public RecyclerViewPokemonAdapter(List<Pokemon> data) {
         this.data = data;
     }
 
@@ -32,11 +33,14 @@ public class RecyclerViewPokemonAdapter extends RecyclerView.Adapter<RecyclerVie
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        int id = data.get(position);
-        holder.textViewId.setText(id + "번");
+        Pokemon pokemon = data.get(position);
+        holder.textViewId.setText(pokemon.getId() + "번");
         holder.textViewId.setTag(position);
+
+        holder.textViewName.setText(pokemon.getName());
+        holder.textViewName.setTag(position);
         
-        Util.loadImageOn("https://pokeres.bastionbot.org/images/pokemon/" + id + ".png", holder.imageViewPokemon);
+        Util.loadImageOn(pokemon.getImgUrl(), holder.imageViewPokemon);
     }
 
     @Override
@@ -46,12 +50,14 @@ public class RecyclerViewPokemonAdapter extends RecyclerView.Adapter<RecyclerVie
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView textViewId;
+        public TextView textViewName;
         public ImageView imageViewPokemon;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             textViewId = itemView.findViewById(R.id.item_pokemon__textViewId);
+            textViewName = itemView.findViewById(R.id.item_pokemon__textViewName);
             imageViewPokemon = itemView.findViewById(R.id.item_pokemon__imageViewPokemon);
         }
     }

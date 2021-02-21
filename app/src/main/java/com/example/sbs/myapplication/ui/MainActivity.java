@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.sbs.myapplication.Pokemon;
 import com.example.sbs.myapplication.R;
 
 import java.util.ArrayList;
@@ -21,10 +22,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final List<Integer> data = new ArrayList<>();
-        for ( int i = 1; i <= 100; i++ ) {
-            data.add(i);
-        }
+        final List<Pokemon> data = new ArrayList<>();
+        data.add(new Pokemon(1, "bulbasaur"));
+        data.add(new Pokemon(2, "ivysaur"));
+        data.add(new Pokemon(3, "venusaur"));
 
         RecyclerView recyclerViewPokemon = findViewById(R.id.activity_main__recyclerViewPokemon);
         recyclerViewPokemon.setAdapter(new RecyclerViewPokemonAdapter(data));
