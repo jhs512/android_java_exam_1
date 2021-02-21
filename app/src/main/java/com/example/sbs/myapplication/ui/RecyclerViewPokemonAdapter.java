@@ -3,12 +3,14 @@ package com.example.sbs.myapplication.ui;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sbs.myapplication.R;
+import com.example.sbs.myapplication.util.Util;
 
 import java.util.List;
 
@@ -30,8 +32,11 @@ public class RecyclerViewPokemonAdapter extends RecyclerView.Adapter<RecyclerVie
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.textViewId.setText(data.get(position) + "번");
+        int id = data.get(position);
+        holder.textViewId.setText(id + "번");
         holder.textViewId.setTag(position);
+        
+        Util.loadImageOn("https://pokeres.bastionbot.org/images/pokemon/" + id + ".png", holder.imageViewPokemon);
     }
 
     @Override
@@ -41,11 +46,13 @@ public class RecyclerViewPokemonAdapter extends RecyclerView.Adapter<RecyclerVie
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView textViewId;
+        public ImageView imageViewPokemon;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             textViewId = itemView.findViewById(R.id.item_pokemon__textViewId);
+            imageViewPokemon = itemView.findViewById(R.id.item_pokemon__imageViewPokemon);
         }
     }
 }

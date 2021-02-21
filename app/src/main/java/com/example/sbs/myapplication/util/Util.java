@@ -6,8 +6,12 @@ import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -80,7 +84,7 @@ public class Util {
         ObjectMapper om = new ObjectMapper();
 
         try {
-            return (T)om.readValue(jsonString, cls);
+            return (T) om.readValue(jsonString, cls);
         } catch (JsonProcessingException e) {
             return null;
         }
@@ -92,7 +96,7 @@ public class Util {
         ObjectMapper om = new ObjectMapper();
 
         try {
-            return (T)om.readValue(jsonString, cls);
+            return (T) om.readValue(jsonString, cls);
         } catch (JsonProcessingException e) {
             return null;
         }
@@ -101,5 +105,23 @@ public class Util {
     public static float dipToPixels(float borderRadius) {
         DisplayMetrics metrics = application.getResources().getDisplayMetrics();
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, borderRadius, metrics);
+    }
+
+    public static void loadImageOn(String imgUrl, ImageView imageView) {
+        loadImageOn(imgUrl, imageView, 0);
+    }
+
+    public static void loadImageOn(String imgUrl, ImageView imageView, int borderRadius) {
+        if (borderRadius > 0) {
+            Glide.with(application)
+                    .load(imgUrl)
+                    .transform(new CenterCrop(), new RoundedCorners((int) dipToPixels(borderRadius)))
+                    .into(imageView);
+        } else {
+            Glide.with(application)
+                    .load(imgUrl)
+                    .into(imageView);
+        }
+
     }
 }
