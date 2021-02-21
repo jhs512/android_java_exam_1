@@ -3,7 +3,9 @@ package com.example.sbs.myapplication.util;
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.TypedValue;
 import android.widget.Toast;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -94,5 +96,10 @@ public class Util {
         } catch (JsonProcessingException e) {
             return null;
         }
+    }
+
+    public static float dipToPixels(float borderRadius) {
+        DisplayMetrics metrics = application.getResources().getDisplayMetrics();
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, borderRadius, metrics);
     }
 }

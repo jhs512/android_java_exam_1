@@ -10,7 +10,13 @@
         android:id="@+id/activity_main__imageViewTop"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:layout_gravity="center"
-        android:background="@color/black" />
+        android:layout_gravity="center" />
+
+    <ImageView
+        android:layout_marginTop="20dp"
+        android:id="@+id/activity_main__imageViewTop2"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center" />
 
 </LinearLayout>
