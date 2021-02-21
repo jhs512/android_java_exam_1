@@ -1,15 +1,12 @@
 package com.example.sbs.myapplication.ui;
 
 import android.os.Bundle;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.example.sbs.myapplication.R;
-import com.example.sbs.myapplication.dto.Todo;
-import com.example.sbs.myapplication.util.Util;
-import com.fasterxml.jackson.core.type.TypeReference;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -17,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        List<Todo> todos = Util.spGetObj("todos", new TypeReference<List<Todo>>() {});
+        ImageView imageViewTop = findViewById(R.id.activity_main__imageViewTop);
+        Glide.with(this).load("http://goo.gl/gEgYUd").into(imageViewTop);
     }
 }
