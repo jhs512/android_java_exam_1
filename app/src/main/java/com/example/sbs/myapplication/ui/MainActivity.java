@@ -18,7 +18,5 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         List<Todo> todos = Util.spGetObj("todos", new TypeReference<List<Todo>>() {});
-
-        Util.log(todos.get(0).getTitle());
     }
 }

@@ -45,4 +45,8 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-core:2.12.1'
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.12.1'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.1'
+
+    // 스테토
+    implementation 'com.facebook.stetho:stetho:1.5.1'
+    implementation 'com.facebook.stetho:stetho-js-rhino:1.5.1'
 }
