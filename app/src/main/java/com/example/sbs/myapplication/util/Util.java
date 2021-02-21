@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Util {
@@ -72,6 +73,18 @@ public class Util {
     }
 
     public static <T> T spGetObj(String key, Class<T> cls) {
+        String jsonString = spGetString(key, "");
+
+        ObjectMapper om = new ObjectMapper();
+
+        try {
+            return (T)om.readValue(jsonString, cls);
+        } catch (JsonProcessingException e) {
+            return null;
+        }
+    }
+
+    public static <T> T spGetObj(String key, TypeReference<T> cls) {
         String jsonString = spGetString(key, "");
 
         ObjectMapper om = new ObjectMapper();
