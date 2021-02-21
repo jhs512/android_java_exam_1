@@ -3,7 +3,11 @@ package com.example.sbs.myapplication.util;
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.widget.Toast;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Util {
     private static Application application;
@@ -33,6 +37,10 @@ public class Util {
         spEditor.putString(key, value);
     }
 
+    public static void spPut(String key, Object obj) {
+        spPut(key, objToJsonString(obj));
+    }
+
     public static void spCommit() {
         spEditor.commit();
     }
@@ -47,5 +55,31 @@ public class Util {
 
     public static String spGetString(String key, String defaultValue) {
         return sp.getString(key, defaultValue);
+    }
+
+    public static void log(String msg) {
+        Log.d("AA1", msg);
+    }
+
+    public static String objToJsonString(Object obj) {
+        ObjectMapper om = new ObjectMapper();
+
+        try {
+            return om.writeValueAsString(obj);
+        } catch (JsonProcessingException e) {
+            return "";
+        }
+    }
+
+    public static <T> T spGetObj(String key, Class<T> cls) {
+        String jsonString = spGetString(key, "");
+
+        ObjectMapper om = new ObjectMapper();
+
+        try {
+            return (T)om.readValue(jsonString, cls);
+        } catch (JsonProcessingException e) {
+            return null;
+        }
     }
 }
