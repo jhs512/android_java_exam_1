@@ -3,6 +3,7 @@ package com.example.sbs.myapplication.ui;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,6 +14,7 @@ import com.example.sbs.myapplication.Pokemon;
 import com.example.sbs.myapplication.R;
 import com.example.sbs.myapplication.util.Util;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerViewPokemonAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -21,9 +23,10 @@ public class RecyclerViewPokemonAdapter extends RecyclerView.Adapter<RecyclerVie
     private final int TYPE_FOOTER = 2;
 
     private List<Pokemon> data;
+    private View.OnClickListener onClickLoadMore;
 
-    public RecyclerViewPokemonAdapter(List<Pokemon> data) {
-        this.data = data;
+    public RecyclerViewPokemonAdapter() {
+        this.data = new ArrayList<>();
     }
 
     @Override
@@ -62,6 +65,7 @@ public class RecyclerViewPokemonAdapter extends RecyclerView.Adapter<RecyclerVie
         if (holder instanceof HeaderViewHolder) {
 
         } else if (holder instanceof FooterViewHolder) {
+            FooterViewHolder footerViewHolder = (FooterViewHolder) holder;
 
         } else {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
@@ -84,7 +88,19 @@ public class RecyclerViewPokemonAdapter extends RecyclerView.Adapter<RecyclerVie
         return data.size() + 2;
     }
 
-    public static class ItemViewHolder extends RecyclerView.ViewHolder {
+    public void addPokemons(List<Pokemon> pokemons) {
+        for ( Pokemon pokemon : pokemons ) {
+            data.add(pokemon);
+        }
+
+        notifyDataSetChanged();
+    }
+
+    public void setOnClickLoadMore(View.OnClickListener onClickLoadMore) {
+        this.onClickLoadMore = onClickLoadMore;
+    }
+
+    public class ItemViewHolder extends RecyclerView.ViewHolder {
         public TextView textViewId;
         public TextView textViewName;
         public ImageView imageViewPokemon;
@@ -98,15 +114,19 @@ public class RecyclerViewPokemonAdapter extends RecyclerView.Adapter<RecyclerVie
         }
     }
 
-    public static class HeaderViewHolder extends RecyclerView.ViewHolder {
+    public class HeaderViewHolder extends RecyclerView.ViewHolder {
         public HeaderViewHolder(@NonNull View view) {
             super(view);
         }
     }
 
-    public static class FooterViewHolder extends RecyclerView.ViewHolder {
+    public class FooterViewHolder extends RecyclerView.ViewHolder {
+        public Button buttonLoadMore;
+
         public FooterViewHolder(@NonNull View view) {
             super(view);
+            buttonLoadMore = view.findViewById(R.id.item_pokemon_footer__buttonLoadMore);
+            buttonLoadMore.setOnClickListener(onClickLoadMore);
         }
     }
 }

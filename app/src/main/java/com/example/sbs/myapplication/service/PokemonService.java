@@ -46,7 +46,7 @@ public class PokemonService {
         pokeApi = retrofit.create(PokeApi.class);
     }
 
-    public void getPokemon(@NonNull Consumer<? super PokeApi__getPokemons__ResponseBody> onNext) {
+    public void getPokemons(@NonNull Consumer<? super PokeApi__getPokemons__ResponseBody> onNext) {
         pokeApi.getPokemons()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
