@@ -24,10 +24,12 @@ public class MainActivity extends AppCompatActivity {
 
         // 푸터의 `더 보기` 버튼을 클릭하면 일어날 일을 세팅
         recyclerViewPokemonAdapter.setOnClickLoadMore(view -> {
+            view.setEnabled(false);
+
             pokemonService.getPokemons(recyclerViewPokemonAdapter.getDataSize(), recyclerViewPokemonAdapter.getLoadCount(), responseBody -> {
                 recyclerViewPokemonAdapter.addPokemons(responseBody.getResults());
+                view.setEnabled(true);
             });
-
         });
 
         recyclerViewPokemon.setAdapter(recyclerViewPokemonAdapter);

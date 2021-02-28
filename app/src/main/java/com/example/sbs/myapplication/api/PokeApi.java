@@ -1,9 +1,5 @@
 package com.example.sbs.myapplication.api;
 
-import com.example.sbs.myapplication.Pokemon;
-
-import java.util.List;
-
 import io.reactivex.rxjava3.core.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
