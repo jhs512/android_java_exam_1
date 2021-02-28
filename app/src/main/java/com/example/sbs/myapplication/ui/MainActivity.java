@@ -1,16 +1,12 @@
 package com.example.sbs.myapplication.ui;
 
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.sbs.myapplication.Pokemon;
 import com.example.sbs.myapplication.R;
 import com.example.sbs.myapplication.service.PokemonService;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -28,9 +24,10 @@ public class MainActivity extends AppCompatActivity {
 
         // 푸터의 `더 보기` 버튼을 클릭하면 일어날 일을 세팅
         recyclerViewPokemonAdapter.setOnClickLoadMore(view -> {
-            pokemonService.getPokemons(responseBody -> {
+            pokemonService.getPokemons(recyclerViewPokemonAdapter.getDataSize(), recyclerViewPokemonAdapter.getLoadCount(), responseBody -> {
                 recyclerViewPokemonAdapter.addPokemons(responseBody.getResults());
             });
+
         });
 
         recyclerViewPokemon.setAdapter(recyclerViewPokemonAdapter);

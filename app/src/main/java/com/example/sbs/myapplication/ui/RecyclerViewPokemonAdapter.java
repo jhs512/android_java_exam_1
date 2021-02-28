@@ -93,11 +93,21 @@ public class RecyclerViewPokemonAdapter extends RecyclerView.Adapter<RecyclerVie
             data.add(pokemon);
         }
 
-        notifyDataSetChanged();
+        int headerCount = 1;
+
+        notifyItemRangeInserted(headerCount + getDataSize(), getLoadCount());
     }
 
     public void setOnClickLoadMore(View.OnClickListener onClickLoadMore) {
         this.onClickLoadMore = onClickLoadMore;
+    }
+
+    public int getLoadCount() {
+        return 20;
+    }
+
+    public int getDataSize() {
+        return data.size();
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
