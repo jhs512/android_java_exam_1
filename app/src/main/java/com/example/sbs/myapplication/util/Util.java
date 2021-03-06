@@ -28,6 +28,10 @@ public class Util {
         spEditor = sp.edit();
     }
 
+    public static void toast(int msg) {
+        toast(msg + "");
+    }
+
     public static void toast(String msg) {
         Toast.makeText(application, msg, Toast.LENGTH_SHORT).show();
     }
