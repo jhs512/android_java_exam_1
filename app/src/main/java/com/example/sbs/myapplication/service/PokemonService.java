@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import com.example.sbs.myapplication.BuildConfig;
 import com.example.sbs.myapplication.api.PokeApi;
+import com.example.sbs.myapplication.api.PokeApi__getPokemon__ResponseBody;
 import com.example.sbs.myapplication.api.PokeApi__getPokemons__ResponseBody;
 import com.example.sbs.myapplication.util.Util;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
@@ -48,6 +49,15 @@ public class PokemonService {
 
     public void getPokemons(int offset, int limit, @NonNull Consumer<? super PokeApi__getPokemons__ResponseBody> onNext) {
         pokeApi.getPokemons(offset, limit)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(onNext, throwable -> {
+                    Util.log("throwable : " + throwable.getMessage());
+                });
+    }
+
+    public void getPokemon(int id, @NonNull Consumer<? super PokeApi__getPokemon__ResponseBody> onNext) {
+        pokeApi.getPokemon(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(onNext, throwable -> {

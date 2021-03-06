@@ -2,6 +2,7 @@ package com.example.sbs.myapplication.api;
 
 import io.reactivex.rxjava3.core.Observable;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface PokeApi {
@@ -9,4 +10,7 @@ public interface PokeApi {
 
     @GET("pokemon")
     Observable<PokeApi__getPokemons__ResponseBody> getPokemons(@Query("offset") int offset, @Query("limit") int limit);
+
+    @GET("pokemon/{id}")
+    Observable<PokeApi__getPokemon__ResponseBody> getPokemon(@Path("id") int id);
 }

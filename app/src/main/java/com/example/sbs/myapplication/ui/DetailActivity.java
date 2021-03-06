@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.sbs.myapplication.Pokemon;
 import com.example.sbs.myapplication.R;
 import com.example.sbs.myapplication.databinding.ActivityDetailBinding;
+import com.example.sbs.myapplication.service.PokemonService;
 import com.example.sbs.myapplication.util.Util;
 
 public class DetailActivity extends AppCompatActivity {
@@ -21,5 +24,13 @@ public class DetailActivity extends AppCompatActivity {
         setTitle(id + "번 포켓몬 상세정보");
 
         binding.activityDetailTextViewId.setText(id + "번");
+
+        // 포켓몬 서비스
+        final PokemonService pokemonService = new PokemonService();
+
+        pokemonService.getPokemon(id, responseBody -> {
+            Pokemon pokemon = responseBody.getPokemon();
+            binding.activityDetailTextViewName.setText(pokemon.getName());
+        });
     }
 }
