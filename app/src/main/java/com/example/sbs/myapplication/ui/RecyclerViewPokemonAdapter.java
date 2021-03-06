@@ -30,6 +30,10 @@ public class RecyclerViewPokemonAdapter extends RecyclerView.Adapter<RecyclerVie
         this.data = new ArrayList<>();
     }
 
+    public Pokemon getPokemon(int index) {
+        return data.get(index);
+    }
+
     @Override
     public int getItemViewType(int position) {
         if (position == 0)

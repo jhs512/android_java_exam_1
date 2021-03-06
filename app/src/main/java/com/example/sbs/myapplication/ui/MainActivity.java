@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.sbs.myapplication.Pokemon;
 import com.example.sbs.myapplication.R;
 import com.example.sbs.myapplication.service.PokemonService;
 import com.example.sbs.myapplication.util.Util;
@@ -14,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("포켓몬 리스트");
         setContentView(R.layout.activity_main);
 
         // 포켓몬 서비스
@@ -28,9 +30,11 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewPokemonAdapter.setOnClickItem(view -> {
             int pokemonIndex = (int)view.getTag();
 
-            startActivity(new Intent(this, DetailActivity.class));
+            Pokemon pokemon = recyclerViewPokemonAdapter.getPokemon(pokemonIndex);
 
-            Util.toast(pokemonIndex);
+            Intent intent = new Intent(this, DetailActivity.class);
+            intent.putExtra("id", pokemon.getId());
+            startActivity(intent);
         });
 
         // 푸터의 `더 보기` 버튼을 클릭하면 일어날 일을 세팅
