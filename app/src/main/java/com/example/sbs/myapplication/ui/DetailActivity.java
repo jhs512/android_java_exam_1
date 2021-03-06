@@ -31,6 +31,8 @@ public class DetailActivity extends AppCompatActivity {
         pokemonService.getPokemon(id, responseBody -> {
             Pokemon pokemon = responseBody.getPokemon();
             binding.activityDetailTextViewName.setText(pokemon.getName());
+
+            Util.loadImageOn(pokemon.getImgUrl(), binding.activityDetailImageViewPokemon);
         });
     }
 }
