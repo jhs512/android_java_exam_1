@@ -113,7 +113,7 @@ public class RecyclerViewPokemonAdapter extends RecyclerView.Adapter<RecyclerVie
     }
 
     public int getLoadCount() {
-        return 5;
+        return 50;
     }
 
     public int getDataSize() {
