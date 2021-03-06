@@ -23,16 +23,15 @@ public class DetailActivity extends AppCompatActivity {
 
         setTitle(id + "번 포켓몬 상세정보");
 
-        binding.activityDetailTextViewId.setText(id + "번");
+        binding.setId(id);
 
         // 포켓몬 서비스
         final PokemonService pokemonService = new PokemonService();
 
         pokemonService.getPokemon(id, responseBody -> {
             Pokemon pokemon = responseBody.getPokemon();
-            binding.activityDetailTextViewName.setText(pokemon.getName());
-
-            Util.loadImageOn(pokemon.getImgUrl(), binding.activityDetailImageViewPokemon);
+            binding.setName(pokemon.getName());
+            binding.setImgUrl(pokemon.getImgUrl());
         });
     }
 }

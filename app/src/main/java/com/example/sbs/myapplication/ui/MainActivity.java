@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.sbs.myapplication.Pokemon;
 import com.example.sbs.myapplication.R;
 import com.example.sbs.myapplication.service.PokemonService;
-import com.example.sbs.myapplication.util.Util;
 
 public class MainActivity extends AppCompatActivity {
     private PokemonService pokemonService;
