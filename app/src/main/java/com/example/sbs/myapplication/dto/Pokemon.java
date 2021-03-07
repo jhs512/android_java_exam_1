@@ -1,4 +1,4 @@
-package com.example.sbs.myapplication;
+package com.example.sbs.myapplication.dto;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

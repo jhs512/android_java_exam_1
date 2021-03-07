@@ -10,8 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.sbs.myapplication.Pokemon;
 import com.example.sbs.myapplication.R;
+import com.example.sbs.myapplication.dto.Pokemon;
 import com.example.sbs.myapplication.util.Util;
 
 import java.util.ArrayList;

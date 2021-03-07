@@ -1,16 +1,11 @@
 package com.example.sbs.myapplication.ui;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.example.sbs.myapplication.Pokemon;
-import com.example.sbs.myapplication.R;
 import com.example.sbs.myapplication.databinding.ActivityDetailBinding;
 import com.example.sbs.myapplication.service.PokemonService;
-import com.example.sbs.myapplication.util.Util;
 
 public class DetailActivity extends AppCompatActivity {
     @Override
@@ -23,11 +18,17 @@ public class DetailActivity extends AppCompatActivity {
 
         setTitle(id + "번 포켓몬 상세정보");
 
+        DetailViewModel detailViewModel = new DetailViewModel();
+
         // 포켓몬 서비스
         final PokemonService pokemonService = new PokemonService();
 
         pokemonService.getPokemon(id, responseBody -> {
-            binding.setPokemon(responseBody.getPokemon());
+            detailViewModel.pokemon = responseBody.getPokemon();
+            binding.setVm(detailViewModel);
         });
+
+        // 하단 이미지 로드
+        detailViewModel.bottomImgUrl = "https://i.picsum.photos/id/199/536/354.jpg?hmac=g0IyHUDJS4xn7wz_TpnFDJAtrGcukcqV1Ye7w22fdFk";
     }
 }
