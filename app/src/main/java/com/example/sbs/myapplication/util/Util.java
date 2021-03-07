@@ -2,6 +2,7 @@ package com.example.sbs.myapplication.util;
 
 import android.app.Application;
 import android.content.SharedPreferences;
+import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -126,6 +127,11 @@ public class Util {
                     .load(imgUrl)
                     .into(imageView);
         }
+
+    }
+
+    public static void setTimeout(Runnable r, int delay) {
+        new android.os.Handler(Looper.getMainLooper()).postDelayed(r, delay);
 
     }
 }
