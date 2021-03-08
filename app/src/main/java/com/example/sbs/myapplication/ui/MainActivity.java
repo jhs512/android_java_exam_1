@@ -7,6 +7,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.sbs.myapplication.databinding.ActivityMainBinding;
 import com.example.sbs.myapplication.dto.Pokemon;
 import com.example.sbs.myapplication.R;
 import com.example.sbs.myapplication.service.PokemonService;
@@ -20,13 +21,12 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("포켓몬 리스트");
-        setContentView(R.layout.activity_main);
+        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         // 포켓몬 서비스
         pokemonService = new PokemonService();
 
-        // 포켓몬 리사이클러 뷰
-        final RecyclerView recyclerViewPokemon = findViewById(R.id.activity_main__recyclerViewPokemon);
         // 포켓몬 리사이클러 뷰 어덥터
         recyclerViewPokemonAdapter = new RecyclerViewPokemonAdapter();
 
@@ -48,7 +48,7 @@ public class MainActivity extends BaseActivity {
             loadMore(view);
         });
 
-        recyclerViewPokemon.setAdapter(recyclerViewPokemonAdapter);
+        binding.activityMainRecyclerViewPokemon.setAdapter(recyclerViewPokemonAdapter);
 
         loadMore();
     }
