@@ -2,6 +2,8 @@ package com.example.sbs.myapplication.ui;
 
 import android.os.Bundle;
 
+import androidx.lifecycle.ViewModelProvider;
+
 import com.example.sbs.myapplication.databinding.ActivityDetailBinding;
 import com.example.sbs.myapplication.service.PokemonService;
 
@@ -17,7 +19,7 @@ public class DetailActivity extends BaseActivity {
 
         setTitle(id + "번 포켓몬 상세정보");
 
-        DetailViewModel detailViewModel = new DetailViewModel();
+        DetailViewModel detailViewModel = new ViewModelProvider(this, new ViewModelProvider.AndroidViewModelFactory(getApplication())).get(DetailViewModel.class);
         binding.setVm(detailViewModel);
 
         // 포켓몬 서비스
