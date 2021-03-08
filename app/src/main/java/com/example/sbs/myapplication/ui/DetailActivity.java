@@ -2,13 +2,10 @@ package com.example.sbs.myapplication.ui;
 
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.sbs.myapplication.databinding.ActivityDetailBinding;
 import com.example.sbs.myapplication.service.PokemonService;
-import com.example.sbs.myapplication.util.Util;
 
-public class DetailActivity extends AppCompatActivity {
+public class DetailActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

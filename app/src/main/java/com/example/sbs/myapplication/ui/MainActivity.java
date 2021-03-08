@@ -10,8 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.sbs.myapplication.dto.Pokemon;
 import com.example.sbs.myapplication.R;
 import com.example.sbs.myapplication.service.PokemonService;
+import com.example.sbs.myapplication.util.Util;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     private PokemonService pokemonService;
     private RecyclerViewPokemonAdapter recyclerViewPokemonAdapter;
 
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
             Pokemon pokemon = recyclerViewPokemonAdapter.getPokemon(pokemonIndex);
 
-            Intent intent = new Intent(this, DetailActivity.class);
+            Intent intent = new Intent(Util.getCurrentActivity(), DetailActivity.class);
             intent.putExtra("id", pokemon.getId());
             startActivity(intent);
         });
