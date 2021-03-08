@@ -78,10 +78,10 @@ public class RecyclerViewPokemonAdapter extends RecyclerView.Adapter<RecyclerVie
             int pokemonIndex = position - 1;
 
             Pokemon pokemon = data.get(pokemonIndex);
-            itemViewHolder.textViewId.setText(pokemon.getId() + "번");
+            itemViewHolder.textViewId.setText(pokemon.id + "번");
             itemViewHolder.textViewId.setTag(pokemonIndex);
 
-            itemViewHolder.textViewName.setText(pokemon.getName());
+            itemViewHolder.textViewName.setText(pokemon.name);
             itemViewHolder.textViewName.setTag(pokemonIndex);
 
             itemViewHolder.imageViewPokemon.setTag(pokemonIndex);
@@ -113,7 +113,7 @@ public class RecyclerViewPokemonAdapter extends RecyclerView.Adapter<RecyclerVie
     }
 
     public int getLoadCount() {
-        return 50;
+        return 5;
     }
 
     public int getDataSize() {

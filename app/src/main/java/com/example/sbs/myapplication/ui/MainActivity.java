@@ -7,6 +7,9 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.sbs.myapplication.databinding.ActivityMainBinding;
 import com.example.sbs.myapplication.service.PokemonService;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,7 +19,7 @@ public class MainActivity extends BaseActivity {
         binding.setLifecycleOwner(this);
         setContentView(binding.getRoot());
 
-        MainViewModel vm = new ViewModelProvider(this, new ViewModelProvider.AndroidViewModelFactory(getApplication())).get(MainViewModel.class);
+        MainViewModel vm = new ViewModelProvider(this).get(MainViewModel.class);
         binding.setVm(vm);
     }
 }

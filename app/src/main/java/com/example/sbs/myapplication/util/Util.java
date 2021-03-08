@@ -1,6 +1,7 @@
 package com.example.sbs.myapplication.util;
 
 import android.app.Application;
+import android.app.Fragment;
 import android.content.SharedPreferences;
 import android.os.Looper;
 import android.preference.PreferenceManager;
@@ -140,7 +141,11 @@ public class Util {
         Util.currentActivity = baseActivity;
     }
 
-    public static <T> T getCurrentActivity() {
+    public static <T extends BaseActivity> T getCurrentActivity() {
         return (T)Util.currentActivity;
+    }
+
+    public static Application getApplication() {
+        return application;
     }
 }
